@@ -109,10 +109,10 @@
     border-radius: 5mm;
     border: 0.6mm solid rgba(255,255,255,.9);
     background:
-      radial-gradient(circle at 15% 20%, rgba(255,255,255,.55) 0 2mm, transparent 2.2mm),
-      radial-gradient(circle at 85% 70%, rgba(255,255,255,.55) 0 1.5mm, transparent 1.7mm),
-      radial-gradient(circle at 60% 90%, rgba(255,255,255,.5) 0 1.2mm, transparent 1.4mm),
-      repeating-linear-gradient(45deg, rgba(255,255,255,.22) 0 1.2mm, transparent 1.2mm 4mm),
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,.55) 0 2mm, rgba(255,255,255,0) 2.2mm),
+      radial-gradient(circle at 85% 70%, rgba(255,255,255,.55) 0 1.5mm, rgba(255,255,255,0) 1.7mm),
+      radial-gradient(circle at 60% 90%, rgba(255,255,255,.5) 0 1.2mm, rgba(255,255,255,0) 1.4mm),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.22) 0 1.2mm, rgba(255,255,255,0) 1.2mm 4mm),
       var(--paper);
     padding: 6mm 6mm 5mm;
     display: flex;
@@ -527,6 +527,10 @@
     /* iOS Safari は @page の余白指定を無視するため、用紙固定ではなく印刷可能領域に合わせる */
     .page-wrap { width: 100% !important; height: 100% !important; }
     .page { width: 100%; height: 100%; box-shadow: none; transform: none !important; page-break-after: avoid; }
+    /* WebKit(iOS Safari)は印刷時に gradient のアルファを失い黒く塗るため、模様を外して不透明色にする */
+    .card { background: var(--paper); }
+    .name-box, .no-box { background: #fff; }
+    .panel::after, .flavor::after { background: color-mix(in srgb, var(--c) 7%, #fff); }
     [contenteditable]:empty::before { content: none; }
     .photo-hint { display: none; }
   }
