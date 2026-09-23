@@ -756,12 +756,20 @@
     });
   }
 
+  // PDF保存時のファイル名（ブラウザは document.title を使う）
+  function updateTitle() {
+    const name = document.querySelector('[data-key="name"]').innerText.trim();
+    document.title = name ? `個人カード_${name}` : '個人カード';
+  }
+
   let saveTimer;
   document.addEventListener('input', e => {
     if (!e.target.closest('[contenteditable]')) return;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveAll, 300);
+    if (e.target.dataset.key === 'name') updateTitle();
   });
+  window.addEventListener('beforeprint', updateTitle);
 
   function clearAll() {
     if (!confirm('入力内容をすべて消します。よろしいですか？')) return;
@@ -823,6 +831,7 @@
   });
 
   loadAll();
+  updateTitle();
 </script>
 
 </body>
