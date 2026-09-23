@@ -182,8 +182,8 @@
 
   /* ---- 進化エリア: 銀ベベル ---- */
   .photo-area {
-    flex: 0 0 auto;
-    height: 86mm;
+    /* 固定mmではなく割合にして、印刷可能領域が狭い環境（iOS）でも比例して縮むようにする */
+    flex: 0 0 31.5%;
     padding: 1.6mm;
     border-radius: 3.5mm;
     background: linear-gradient(160deg, var(--silver-hi) 0%, var(--silver) 40%, var(--silver-lo) 100%);
@@ -454,8 +454,7 @@
 
   /* ---- 先生からのメッセージ ---- */
   .flavor {
-    flex: 0 0 auto;
-    height: 49mm;
+    flex: 0 0 18%;
   }
 
   .flavor .panel-body {
